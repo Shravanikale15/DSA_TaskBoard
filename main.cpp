@@ -215,7 +215,6 @@ void addTask(ToDoList &list) {
             case DT_FLOAT: cin >> c.floatValue; cin.ignore(); break;
             case DT_STRING: getline(cin, c.stringValue); break;
             case DT_DATE: getline(cin, c.dateValue); break;
-            case DT_LINK: getline(cin, c.linkValue); break;
             default: getline(cin, c.stringValue); break;
         }
 
@@ -301,7 +300,6 @@ void updateCell(ToDoList &list) {
                             case DT_BOOL: cin >> cell.boolValue; break;
                             case DT_FLOAT: cin >> cell.floatValue; break;
                             case DT_DATE: cin.ignore(); getline(cin, cell.dateValue); break;
-                            case DT_LINK: cin.ignore(); getline(cin, cell.linkValue); break;
                             default: cin.ignore(); getline(cin, cell.stringValue); break;
                         }
                         found = true;
@@ -750,4 +748,5 @@ int main() {
 
     return 0;
 }
+
 
