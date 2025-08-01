@@ -1,2 +1,40 @@
-# DSA_TaskBoard
-A C++ based Task Management System built using core data structures like vector, stack, enum, and priority_queue. Features include dynamic typed tasks, CRUD operations, filtering with undo, priority-based scheduling, deadline alerts, and persistent CSV storage — all through a structured terminal interface.
+# 🗂️ DSA_TaskBoard
+
+A C++ Task Management System built using core data structures like `vector`, `stack`, `enum`, and `priority_queue`.  
+Manage your tasks efficiently with support for typed fields, real-time alerts, smart scheduling, and persistent CSV storage — all presented through a structured and user-friendly terminal interface.
+
+---
+
+## 🚀 Features
+
+- ✅ **Full CRUD operations** – Add, update, and delete tasks
+- 📊 **Typed columns** – Supports `int`, `float`, `string`, `bool`, and more
+- 🔁 **Filtering with Undo** – Stack-based undo for filters
+- 🧮 **Sorting** – Sort tasks by any column or attribute
+- 📌 **Custom columns** – Dynamically add fields to suit your needs
+- ⏰ **Deadline-based alerts** – Categorized warnings for upcoming tasks
+- 🧠 **Priority scheduling** – Automatically arrange tasks based on urgency and importance
+- 📁 **CSV Import/Export** – Persistent storage of your task data
+- 🧾 **Clean terminal UI** – Uses `setw` for structured, readable output
+
+---
+
+## 🛠️ Tech Stack
+
+- **Language:** C++
+- **Core DSA Used:**
+  - `vector` – dynamic rows and columns
+  - `stack` – filter undo history
+  - `priority_queue` – smart task scheduling
+  - `enum` – strong typed cell structure
+- **File Handling:** CSV-based read/write
+- **Terminal UI:** Built using `iomanip` and `windows.h` (for UTF-8 support)
+
+---
+
+## 🖥️ How to Run
+
+1. Clone the repository  
+   ```bash
+   git clone https://github.com/yourusername/DSA_TaskBoard.git
+   cd DSA_TaskBoard
