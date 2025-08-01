@@ -22,7 +22,6 @@ struct Cell {
     bool boolValue;
     float floatValue;
     string dateValue;
-    string linkValue;
 
     void setValue(string val) { type = DT_STRING; stringValue = val; }
     void setValue(int val) { type = DT_INT; intValue = val; }
@@ -38,7 +37,6 @@ struct Cell {
             case DT_BOOL: return boolValue ? "Yes" : "No";
             case DT_FLOAT: return to_string(floatValue);
             case DT_DATE: return dateValue;
-            //case LINK: return stringValue;
         }
         return "";
     }
@@ -57,7 +55,7 @@ int getPriorityValue(const string& p) {
     if (p == "High") return 3;
     if (p == "Medium") return 2;
     if (p == "Low") return 1;
-    return 0; // Unknown
+    return 0;
 }
 
 struct CompareTasks {
@@ -65,8 +63,8 @@ struct CompareTasks {
         int pa = getPriorityValue(a.priority);
         int pb = getPriorityValue(b.priority);
         if (pa == pb)
-            return a.deadline > b.deadline; // earlier deadline = higher priority
-        return pa < pb; // higher priority = top of the queue
+            return a.deadline > b.deadline;   //Earlier deadline == Higher priority
+        return pa < pb;                      //Higher priority == Front of queue
     }
 };
 
@@ -88,7 +86,7 @@ time_t parseDeadline(const string& deadline) {
 
     if (ss.fail()) {
         cerr << "Failed to parse deadline: " << deadline << endl;
-        return time(0) + 999999;  // Push task far in future to avoid alert
+        return time(0) + 999999;  //Pushed the task far in future so it avoids alert
     }
 
     tm timeStruct = {};
@@ -105,7 +103,7 @@ time_t parseDeadline(const string& deadline) {
 
 struct TimeBasedCompare {
     bool operator()(const Task& a, const Task& b) {
-        return parseDeadline(a.deadline) > parseDeadline(b.deadline);  // Min-heap: earliest deadline first
+        return parseDeadline(a.deadline) > parseDeadline(b.deadline);  // Earliest deadline first (using Min_heap)
     }
 };
 
@@ -119,7 +117,7 @@ void showCategorizedAlerts(const ToDoList &list) {
         time_t taskTime = parseDeadline(task.deadline);
         double daysLeft = difftime(taskTime, now) / (60.0 * 60.0 * 24.0);
 
-        if (daysLeft < 0) continue; // Skip past tasks
+        if (daysLeft < 0) continue;
 
         string category;
 
@@ -158,11 +156,10 @@ void displayMenu() {
     cout << "9. Sort by Column\n";
     cout << "10. Filter by Column Value\n";
     cout << "11. Get Stats (Task Count)\n";
-    cout << "12. Undo Last Operation\n";
-    cout << "13. Prioritize Tasks\n";
-    cout << "14. Send Alerts\n";
-    cout << "15. Remove completed tasks\n";
-    cout << "16. View full cell\n";
+    cout << "12. Prioritize Tasks\n";
+    cout << "13. Send Alerts\n";
+    cout << "14. Remove completed tasks\n";
+    cout << "15. View full cell\n";
     cout << "0. Exit\n\n";
 }
 
@@ -230,13 +227,13 @@ void addTask(ToDoList &list) {
     cout << "✅ Task added successfully.\n";
 }
 
-string fitToWidth(const string &str, int width) {
+string fitToWidth(const string &str, int width) {    // Replaces text with '...' if length of column value exceeds the column width
     if ((int)str.length() <= width)
-        return str + string(width - str.length(), ' '); // pad spaces
+        return str + string(width - str.length(), ' ');
     else if (width >= 4)
-        return str.substr(0, width - 3) + "..."; // truncate + ellipsis
+        return str.substr(0, width - 3) + "..."; 
     else
-        return str.substr(0, width); // if too small, just cut
+        return str.substr(0, width);
 }
 
 void printToDoList(const ToDoList &list) {
@@ -392,7 +389,7 @@ void loadFromCSV(ToDoList &list) {
     }
 
     string line;
-    getline(in, line); // Read header this time!
+    getline(in, line);
 
     // Extract all column names
     vector<string> headers;
@@ -404,7 +401,7 @@ void loadFromCSV(ToDoList &list) {
         pos = next + 1;
     }
 
-    // First 5 are standard fields; the rest are extra columns
+    // First 5 columns are standard fields and the rest are extra columns
     list.columnNames.clear();
     for (size_t i = 5; i < headers.size(); ++i) {
         list.columnNames.push_back(headers[i]);
@@ -647,16 +644,6 @@ void getStats(const ToDoList &list) {
     cout << "Total tasks: " << list.tasks.size() << "\n";
 }
 
-void undoLastOperation(ToDoList &list, stack<ToDoList> &undoStack) {
-    if (undoStack.empty()) {
-        cout << "No previous state to undo.\n";
-        return;
-    }
-    list = undoStack.top();
-    undoStack.pop();
-    cout << "Undo successful.\n";
-}
-
 
 void scheduleTasks(const ToDoList& list) {
     priority_queue<Task, vector<Task>, CompareTasks> pq;
@@ -673,7 +660,8 @@ void scheduleTasks(const ToDoList& list) {
     }
 }
 
-time_t parseDeadline(const string &deadline); // function declaration
+
+time_t parseDeadline(const string &deadline);
 
 void removeCompletedTasks(ToDoList &list) {
     int before = list.tasks.size();
@@ -752,14 +740,14 @@ int main() {
             case 9: undoStack.push(todo);sortByColumn(todo); break;
             case 10: undoStack.push(todo);filterTasks(todo); break;
             case 11: getStats(todo); break;
-            case 12: undoLastOperation(todo, undoStack); break;
-            case 13: scheduleTasks(todo); break;
-            case 14: showCategorizedAlerts(todo); break;
-            case 15: removeCompletedTasks(todo); break;
-            case 16: viewFullCell(todo); break;
+            case 12: scheduleTasks(todo); break;
+            case 13: showCategorizedAlerts(todo); break;
+            case 14: removeCompletedTasks(todo); break;
+            case 15: viewFullCell(todo); break;
             default: cout << "Invalid choice.\n";
         }
     }
 
     return 0;
 }
+
