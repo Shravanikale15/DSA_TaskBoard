@@ -38,3 +38,14 @@ Manage your tasks efficiently with support for typed fields, real-time alerts, s
    ```bash
    git clone https://github.com/yourusername/DSA_TaskBoard.git
    cd DSA_TaskBoard
+   ```
+
+2. Compile the code using g++ (or any C++ compiler)
+   ```bash
+   g++ -o taskboard ToDoList_3.cpp
+   ```
+
+3. Run the executable
+   ```bash
+   ./taskboard  # Or `taskboard.exe` on Windows
+   ```
