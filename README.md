@@ -36,13 +36,13 @@ Manage your tasks efficiently with support for typed fields, real-time alerts, s
 
 1. Clone the repository  
    ```bash
-   git clone https://github.com/yourusername/DSA_TaskBoard.git
+   git clone https://github.com/Shravanikale15/DSA_TaskBoard.git
    cd DSA_TaskBoard
    ```
 
 2. Compile the code using g++ (or any C++ compiler)
    ```bash
-   g++ -o taskboard ToDoList_3.cpp
+   g++ -o taskboard main.cpp
    ```
 
 3. Run the executable
