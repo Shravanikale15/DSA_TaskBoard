@@ -28,7 +28,6 @@ struct Cell {
     void setValue(bool val) { type = DT_BOOL; boolValue = val; }
     void setValue(float val) { type = DT_FLOAT; floatValue = val; }
     void setDate(string val) { type = DT_DATE; dateValue = val; }
-    void setLink(string url) { type = DT_LINK; stringValue = url; }
 
     string getAsString() const {
         switch (type) {
@@ -82,7 +81,7 @@ time_t parseDeadline(const string& deadline) {
     int year, month, day, hour, minute;
     char sep1, sep2, space, sep3;
 
-    ss >> year >> sep1 >> month >> sep2 >> day >> space >> hour >> sep3 >> minute;
+    ss >> day >> sep1 >> month >> sep2 >> year >> space >> hour >> sep3 >> minute;
 
     if (ss.fail()) {
         cerr << "Failed to parse deadline: " << deadline << endl;
@@ -90,9 +89,9 @@ time_t parseDeadline(const string& deadline) {
     }
 
     tm timeStruct = {};
-    timeStruct.tm_year = year - 1900;
-    timeStruct.tm_mon = month - 1;
     timeStruct.tm_mday = day;
+    timeStruct.tm_mon = month - 1;
+    timeStruct.tm_year = year - 1900;
     timeStruct.tm_hour = hour;
     timeStruct.tm_min = minute;
     timeStruct.tm_sec = 0;
@@ -198,7 +197,7 @@ void addTask(ToDoList &list) {
     getline(cin, t.name);
     cout << "Priority (High/Medium/Low): ";
     getline(cin, t.priority);
-    cout << "Deadline (yyyy-mm-dd hh:mm): ";
+    cout << "Deadline (dd/mm/yyyy hh:mm): ";
     getline(cin, t.deadline);
     t.status = "Pending";
 
@@ -226,16 +225,16 @@ void addTask(ToDoList &list) {
     cout << "✅ Task added successfully.\n";
 }
 
-string fitToWidth(const string &str, int width) {    // Replaces text with '...' if length of column value exceeds the column width
+string fitToWidth(const string &str, int width) {         //Replaces the column values with '...' if the value exceeds the column width
     if ((int)str.length() <= width)
         return str + string(width - str.length(), ' ');
     else if (width >= 4)
-        return str.substr(0, width - 3) + "..."; 
+        return str.substr(0, width - 3) + "...";
     else
         return str.substr(0, width);
 }
 
-void printToDoList(const ToDoList &list) {
+void printToDoList(const ToDoList &list) {           
     cout << "\n=== " << list.name << " ===\n";
     cout << left << setw(5) << "ID" << setw(20) << "Task Name"
          << setw(10) << "Priority" << setw(20) << "Deadline"
@@ -262,6 +261,7 @@ void printToDoList(const ToDoList &list) {
         cout << "\n";
     }
 }
+
 
 
 void updateCell(ToDoList &list) {
@@ -649,7 +649,7 @@ void scheduleTasks(const ToDoList& list) {
         pq.push(task);
     }
 
-    cout << "\n=== Task Execution Order (High Priority + Earliest Deadline) ===\n";
+    cout << "\n=== Task Execution Order (High Priority + Earliest Deadline) ===\n\n";
     while (!pq.empty()) {
         Task t = pq.top(); pq.pop();
         cout << "Task #" << t.id << ": " << t.name
