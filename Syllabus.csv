@@ -1,0 +1,12 @@
+ID,Name,Priority,Deadline,Status,Desc
+1,DSA,High,28/7/2026 12:00,Pending,"Solve Problems"
+2,Resume,Medium,3/11/2026 22:30,In progress,"Build resume"
+3,UI,High,5/11/2026 9:50,In progress,"Design frontend for webpage"
+4,Java,Low,26/7/2026 12:10,Pending,"Do OOPs"
+5,C++ Problems,Low,25/7/2026 23:45,Pending,"Learn syntax and DSA"
+6,Sketching,Medium,4/11/2026 17:08,In progress,"Use grid method to sketch"
+7,EDAI,Medium,6/11/2026 3:25,Completed,"Grp discussion"
+8,DBMS Theory,High,12/11/2026 16:55,Completed,"Learn theory and SQL"
+9,Aptitude,Low,15/11/2026 11:30,Pending,"Solve reasoning and verbal questions"
+10,Flask,Medium,4/11/2026 17:30,Pending,"Study the routes"
+11,ML,High,27/7/2026 23:59,Pending,"Learn python libraries, ml models"
