@@ -42,7 +42,7 @@ Manage your tasks efficiently with support for typed fields, real-time alerts, s
 
 2. Compile the code using g++ (or any C++ compiler)
    ```bash
-   g++ -o taskboard main.cpp
+   g++ -o taskboard ToDoList.cpp
    ```
 
 3. Run the executable
