@@ -50,9 +50,12 @@ Manage your tasks efficiently with support for typed fields, real-time alerts, s
    ./ToDoList  # Or `ToDoList.exe` on Windows
    ```
 
-Trying it out
-There's a Syllabus.csv in here with some sample tasks — load it through the "Load from CSV" option in the menu so you can see how everything works without typing in tasks by hand first.
+## Trying it out
 
-Project files
+There's a `Syllabus.csv` in here with some sample tasks — load it through the "Load from CSV" option in the menu so you can see how everything works without typing in tasks by hand first.
+
+## Project files
+```
 ├── ToDoList.cpp   # everything lives in this one file
 └── Syllabus.csv     # sample data to load and play with
+```
